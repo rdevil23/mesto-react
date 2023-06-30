@@ -14,61 +14,65 @@ class Api {
     }
   }
 
+  _request(endpoint, options) {
+    return fetch(`${this._baseUrl}${endpoint}`, options).then(this._checkResponse);
+  }
+
   getUserInfo() {
-    return fetch(`${this._baseUrl}users/me`, {
+    return this._request(`users/me`, {
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   updateUserInfo(data) {
-    return fetch(`${this._baseUrl}users/me`, {
+    return this._request(`users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ name: data.name, about: data.about }),
-    }).then(this._checkResponse);
+    });
   }
 
   updateUserAvatar(data) {
-    return fetch(`${this._baseUrl}users/me/avatar`, {
+    return this._request(`users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then(this._checkResponse);
+    });
   }
 
   getCards() {
-    return fetch(`${this._baseUrl}cards`, {
+    return this._request(`cards`, {
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   addNewCard({ name, link }) {
-    return fetch(`${this._baseUrl}cards`, {
+    return this._request(`cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({ name, link }),
-    }).then(this._checkResponse);
+    });
   }
 
   removeCard(cardId) {
-    return fetch(`${this._baseUrl}cards/${cardId}`, {
+    return this._request(`cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   likeCard(cardId) {
-    return fetch(`${this._baseUrl}cards/likes/${cardId}`, {
+    return this._request(`cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   deleteCardLike(cardId) {
-    return fetch(`${this._baseUrl}cards/likes/${cardId}`, {
+    return this._request(`cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse);
+    });
   }
 
   getAllData() {
