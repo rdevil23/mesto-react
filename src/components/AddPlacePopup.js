@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
@@ -21,8 +21,20 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     });
   }
 
+  useEffect(() => {
+    setTitle('');
+    setLink('');
+  }, [isOpen]);
+
   return (
-    <PopupWithForm title="Новое место" name="add" buttonText="Добавить" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}>
+    <PopupWithForm
+      title="Новое место"
+      name="add"
+      buttonText="Добавить"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
       <input
         value={title || ''}
         onChange={handleTitleChange}
@@ -35,7 +47,10 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         maxLength="30"
         required
       />
-      <span className="popup__input-error title-error" id="input-title-error"></span>
+      <span
+        className="popup__input-error title-error"
+        id="input-title-error"
+      ></span>
       <input
         value={link || ''}
         onChange={handleLinkChange}
@@ -46,7 +61,10 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         placeholder="Ссылка на картинку"
         required
       />
-      <span className="popup__input-error link-error" id="input-link-error"></span>
+      <span
+        className="popup__input-error link-error"
+        id="input-link-error"
+      ></span>
     </PopupWithForm>
   );
 }

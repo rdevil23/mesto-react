@@ -43,8 +43,8 @@ function App() {
   function handleUpdateAvatar(data) {
     api
       .updateUserAvatar(data)
-      .then((avatar) => {
-        setCurrentUser(avatar);
+      .then((userInfo) => {
+        setCurrentUser(userInfo);
         closeAllPopups();
       })
       .catch(console.error);
@@ -82,14 +82,18 @@ function App() {
       api
         .likeCard(card._id)
         .then((newCard) => {
-          setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
         })
         .catch(console.error);
     } else {
       api
         .deleteCardLike(card._id)
         .then((newCard) => {
-          setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
         })
         .catch(console.error);
     }
@@ -126,9 +130,21 @@ function App() {
         />
         <Footer />
 
-        <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
-        <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-        <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <EditAvatarPopup
+          onUpdateAvatar={handleUpdateAvatar}
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+        />
+        <EditProfilePopup
+          onUpdateUser={handleUpdateUser}
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        />
+        <AddPlacePopup
+          onAddPlace={handleAddPlaceSubmit}
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+        />
 
         <PopupWithForm name="confirm" title="Вы уверены?" buttonText="Да" />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />

@@ -1,3 +1,29 @@
+# Проект: Место на React
+
+## **Описание проекта**
+
+Сервис Mesto - веб-приложение, позволяющее добавлять/удалять фотографии с описанием и ставить лайки.
+
+### Функционал:
+
+- редактирование профиля (изменение аватара, имени и описания);
+- добавление и удаление карточек;
+- добавление и удаление лайков;
+- возможность открыть фото в полном размере.
+
+**Технологии**
+
+- HTML
+- CSS
+- BEM
+- JavaScript
+- API
+- React
+
+**Проект на GitHub Pages:**
+
+- [Посмотреть проект](https://rdevil23.github.io/mesto-react/index.html)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
